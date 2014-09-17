@@ -52,11 +52,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IDbContext.cs" />
+    <Compile Include="Contracts\IFeedbackSystemData.cs" />
+    <Compile Include="Contracts\IFeedbackSystemDbContext.cs" />
+    <Compile Include="Contracts\IRepository.cs" />
+    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="FeedbackSystemData.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\EFRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FeedbackSystem.Models\FeedbackSystem.Models.csproj">
+      <Project>{99F07AC2-C971-4FB4-B60C-F976B1278429}</Project>
+      <Name>FeedbackSystem.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
