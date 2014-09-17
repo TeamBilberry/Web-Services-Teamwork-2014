@@ -13,9 +13,10 @@
 
         public Feedback()
         {
-            this.Comments = new HashSet<Comment>();
+            this.comments = new HashSet<Comment>();
         }
-        public int ID { get; set; }
+
+        public int Id { get; set; }
 
         [Required]
         public FeedbackType Type { get; set; }
@@ -28,7 +29,7 @@
         public string Text { get; set; }
 
         [Required]
-        public User UserID { get; set; }
+        public User UserId { get; set; }
 
         /// <summary>
         /// Specifies whether the feedback is on an employee,

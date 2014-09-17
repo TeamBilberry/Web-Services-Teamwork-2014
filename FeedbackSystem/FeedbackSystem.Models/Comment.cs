@@ -8,7 +8,7 @@
     /// </summary>
     public class Comment
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public DateTime PostDate { get; set; }
@@ -19,6 +19,6 @@
         public string Text { get; set; }
 
         [Required]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
     }
 }

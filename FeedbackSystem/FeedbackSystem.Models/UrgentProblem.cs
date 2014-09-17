@@ -5,11 +5,11 @@
 
     /// <summary>
     /// Issues which affect the user in a negative way and need to be addressed
-    /// untill a concrete date in the future
+    /// until a concrete date in the future
     /// </summary>
     public class UrgentProblem
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         [Required]
         public DateTime PostDate { get; set; }
@@ -25,6 +25,6 @@
         public string Text { get; set; }
 
         [Required]
-        public int UserID { get; set; }
+        public int UserId { get; set; }
     }
 }
