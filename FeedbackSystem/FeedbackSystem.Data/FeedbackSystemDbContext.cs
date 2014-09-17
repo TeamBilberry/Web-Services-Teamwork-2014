@@ -6,17 +6,17 @@
     using Migrations;
     using Models;
 
-    public class ApplicationDbContext : IdentityDbContext<User>, IFeedbackSystemDbContext
+    public class FeedbackSystemDbContext : IdentityDbContext<User>, IFeedbackSystemDbContext
     {
-        public ApplicationDbContext()
-            : base("AppHarborConnection", throwIfV1Schema: false)
+        public FeedbackSystemDbContext()
+            : base("FeedbackSystem", throwIfV1Schema: false)
         {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<FeedbackSystemDbContext, Configuration>());
         }
 
-        public static ApplicationDbContext Create()
+        public static FeedbackSystemDbContext Create()
         {
-            return new ApplicationDbContext();
+            return new FeedbackSystemDbContext();
         }
 
         public IDbSet<Comment> Comments { get; set; }

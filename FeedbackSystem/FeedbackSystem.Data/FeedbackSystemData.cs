@@ -12,7 +12,7 @@
         private readonly IDictionary<Type, object> repositories = new Dictionary<Type, object>();
 
         public FeedbackSystemData()
-            : this(new ApplicationDbContext())
+            : this(new FeedbackSystemDbContext())
         {
         }
 

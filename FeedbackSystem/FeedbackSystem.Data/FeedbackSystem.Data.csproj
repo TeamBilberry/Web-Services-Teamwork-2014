@@ -56,7 +56,7 @@
     <Compile Include="Contracts\IFeedbackSystemData.cs" />
     <Compile Include="Contracts\IFeedbackSystemDbContext.cs" />
     <Compile Include="Contracts\IRepository.cs" />
-    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="FeedbackSystemDbContext.cs" />
     <Compile Include="FeedbackSystemData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

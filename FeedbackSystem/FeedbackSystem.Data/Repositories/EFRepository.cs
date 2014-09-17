@@ -9,7 +9,7 @@
     public class EFRepository<T> : IRepository<T> where T : class
     {
         public EFRepository()
-            : this(new ApplicationDbContext())
+            : this(new FeedbackSystemDbContext())
         {
         }
 
