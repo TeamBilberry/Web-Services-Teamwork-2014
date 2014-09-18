@@ -2,11 +2,12 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq.Expressions;
     using FeedbackSystem.Models;
 
-    public class CommentDataModel // : IDataModel<Comment, CommentDataModel>
+    public class CommentDataModel
     {
-        public static Func<Comment, CommentDataModel> FromDataToModel
+        public static Expression<Func<Comment, CommentDataModel>> FromDataToModel
         {
             get
             {
@@ -58,6 +59,9 @@
         public string Text { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
+		
+		[Required]
+		public int FeedbackId { get; set; }
     }
 }

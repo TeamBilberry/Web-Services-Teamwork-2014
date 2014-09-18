@@ -2,12 +2,14 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq.Expressions;
     using FeedbackSystem.Models;
+    using FeedbackSystem.Models.Enums;
 
     public class UrgentProblemDataModel
     {
 
-        public static Func<UrgentProblem, UrgentProblemDataModel> FromDataToModel
+        public static Expression<Func<UrgentProblem, UrgentProblemDataModel>> FromDataToModel
         {
             get
             {
@@ -54,6 +56,6 @@
         public string Text { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
     }
 }

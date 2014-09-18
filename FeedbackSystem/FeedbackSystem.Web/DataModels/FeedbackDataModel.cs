@@ -3,12 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using System.Linq;
+    using System.Linq.Expressions;
     using FeedbackSystem.Models;
+    using FeedbackSystem.Models.Enums;
 
     public class FeedbackDataModel
     {
-        public static Func<Feedback, FeedbackDataModel> FromDataToModel
+        public static Expression<Func<Feedback, FeedbackDataModel>> FromDataToModel
         {
             get
             {
@@ -53,7 +54,7 @@
         public string Text { get; set; }
 
         [Required]
-        public User UserId { get; set; }
+        public string UserId { get; set; }
 
         public string AddressedTo { get; set; }
 

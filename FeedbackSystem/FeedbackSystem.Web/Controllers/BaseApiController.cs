@@ -3,7 +3,7 @@
     using System.Web.Http;
     using Data.Contracts;
 
-//    [Authorize(Roles = "Admin")]
+//    [Authorize]
     public abstract class BaseApiController : ApiController
     {
         protected IFeedbackSystemData Data;
