@@ -13,22 +13,22 @@ WebAPI URL: [http://feedbacksystem.apphb.com/](http://feedbacksystem.apphb.com/)
 
 ####RESTful API
 - Use **ASP.NET WebAPI**
-	- Your application must be implemented using ASP.NET WebAPI
+	- [x] Your application must be implemented using ASP.NET WebAPI
 - Provide a **RESTful API**
-	- The endpoints should provide CRUD operations: POST, GET, PUT and DELETE
+	- [x] The endpoints should provide CRUD operations: POST, GET, PUT and DELETE
 - Host the application in the cloud
-	- Use **AppHarbor**
+	- [x] Use **AppHarbor**
 - Use a file storage cloud API
-	- Dropbox, Google Drive or other
+	- [ ] Dropbox, Google Drive or other
 - Use a cloud database
-	- MS SQL, MySQL, MongoDB, Redis or other
+	- [x] MS SQL, MySQL, MongoDB, Redis or other
 - Implement notifications functionality
-	- Use **PubNub** or other 
+	- [ ] Use **PubNub** or other 
 
 
 #### Client application
 - The client application can be one of the following:
-	- Web SPA application using JavaScript
+	- [x] Web SPA application using JavaScript
 	- iOS mobile application
 	- Android mobile application
 	- Windows 8/Windows Phone 8 mobile application
