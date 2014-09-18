@@ -62,6 +62,21 @@
             return Ok(feedbacks);
         }
 
+        [HttpGet]
+        public IHttpActionResult ById(int id)
+        {
+            var feedback = this.Data.Feedbacks.Find(id);
+
+            if (feedback == null)
+            {
+                return NotFound();
+            }
+
+            var model = new FeedbackDataModel(feedback);
+
+            return Ok(feedback);
+        }
+
         [HttpPost]
         public IHttpActionResult Create(FeedbackDataModel model)
         {

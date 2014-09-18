@@ -39,7 +39,7 @@
             this.PostDate = feedback.PostDate;
             this.Text = feedback.Text;
             this.UserId = feedback.UserId;
-            this.Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel).ToArray();
+            this.Comments = feedback.Comments.AsQueryable().Select(c => new CommentDataModel(c));
         }
 
         public int Id { get; set; }
@@ -59,6 +59,6 @@
 
         public string AddressedTo { get; set; }
 
-        public ICollection<CommentDataModel> Comments { get; set; }
+        public IEnumerable<CommentDataModel> Comments { get; set; }
     }
 }

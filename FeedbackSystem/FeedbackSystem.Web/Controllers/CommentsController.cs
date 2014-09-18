@@ -1,12 +1,13 @@
 ﻿namespace FeedbackSystem.Web.Controllers
 {
-    using Data.Contracts;
-    using Data;
-    using FeedbackSystem.Models;
-    using DataModels;
     using System.Linq;
     using System.Web.Http;
+    using Data;
+    using Data.Contracts;
+    using DataModels;
+    using FeedbackSystem.Models;
     using Microsoft.AspNet.Identity;
+
 
     [Authorize]
     public class CommentsController : BaseApiController
@@ -82,7 +83,7 @@
         }
 
         [HttpDelete]
-        public IHttpActionResult DeletеComment(int id)
+        public IHttpActionResult Deletе(int id)
         {
             var existingComment = this.Data.Comments
                                         .All()
@@ -97,6 +98,34 @@
             this.Data.SaveChanges();
 
             return Ok(existingComment);
+        }
+
+        [HttpPost]
+        public IHttpActionResult Create(int feedbackId, CommentDataModel comment)
+        {
+            var feedBack = this.Data.Feedbacks
+                                    .All()
+                                    .FirstOrDefault(f => f.Id == feedbackId);
+
+            if (feedBack == null)
+            {
+                return BadRequest("Feedback does not exist!");
+            }
+
+            var userId = User.Identity.GetUserId();
+
+            var newComment = new Comment
+            {
+                UserId = userId,
+                FeedbackId = feedbackId,
+                PostDate = comment.PostDate,
+                Text = comment.Text
+            };
+
+            feedBack.Comments.Add(newComment);
+            this.Data.SaveChanges();
+
+            return Ok();
         }
     }
 }
