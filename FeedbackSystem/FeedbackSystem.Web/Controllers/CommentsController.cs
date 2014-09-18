@@ -79,8 +79,28 @@
             commentModel.Id = comment.Id;
             commentModel.FeedbackId = comment.FeedbackId;
             commentModel.UserId = comment.UserId;
+            commentModel.UserName = comment.User.UserName;
 
             return Ok(commentModel);
+        }
+
+        [HttpPut]
+        public IHttpActionResult Update(int id, CommentDataModel model)
+        {
+            var comment = this.Data.Comments.Find(id);
+
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            comment.PostDate = model.PostDate;
+            comment.Text = model.Text;
+
+            this.Data.SaveChanges();
+
+            model.Id = comment.Id;
+            return Ok(model);
         }
 
         [HttpDelete]
@@ -95,38 +115,12 @@
                 return BadRequest("Comment does not exists!");
             }
 
+            var model = new CommentDataModel(existingComment);
+
             this.Data.Comments.Delete(existingComment);
             this.Data.SaveChanges();
 
-            return Ok(existingComment);
-        }
-
-        [HttpPost]
-        public IHttpActionResult Create(int feedbackId, CommentDataModel comment)
-        {
-            var feedBack = this.Data.Feedbacks
-                                    .All()
-                                    .FirstOrDefault(f => f.Id == feedbackId);
-
-            if (feedBack == null)
-            {
-                return BadRequest("Feedback does not exist!");
-            }
-
-            var userId = User.Identity.GetUserId();
-
-            var newComment = new Comment
-            {
-                UserId = userId,
-                FeedbackId = feedbackId,
-                PostDate = comment.PostDate,
-                Text = comment.Text
-            };
-
-            feedBack.Comments.Add(newComment);
-            this.Data.SaveChanges();
-
-            return Ok();
+            return Ok(model);
         }
     }
 }
