@@ -1,7 +1,10 @@
 ﻿namespace FeedbackSystem.Web.Controllers
 {
     using FeedbackSystem.Data;
+    using FeedbackSystem.Models;
     using FeedbackSystem.Web.DataModels;
+    using Microsoft.AspNet.Identity;
+    using System;
     using System.Linq;
     using System.Web.Http;
 
@@ -65,6 +68,34 @@
             this.Data.SaveChanges();
 
             return Ok(existingComment);
+        }
+
+        [HttpPost]
+        public IHttpActionResult CreateComment(int feedbackId, CommentDataModel comment)
+        {
+            var feedBack = this.Data.Feedbacks
+                                    .All()
+                                    .FirstOrDefault(f => f.Id == feedbackId);
+
+            if (feedBack == null)
+            {
+                return BadRequest("Feedback does not exist!");
+            }
+
+            var userId = User.Identity.GetUserId();
+
+            var newComment = new Comment
+            {
+                UserId = userId,
+                FeedbackId = feedbackId,
+                PostDate = comment.PostDate,
+                Text = comment.Text
+            };
+
+            feedBack.Comments.Add(newComment);
+            this.Data.SaveChanges();
+
+            return Ok();
         }
     }
 }
