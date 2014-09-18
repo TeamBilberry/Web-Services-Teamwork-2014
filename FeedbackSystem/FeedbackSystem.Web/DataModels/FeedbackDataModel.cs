@@ -43,7 +43,7 @@
             this.UserId = feedback.UserId;
             this.Comments = feedback.Comments.AsQueryable().Select(c => new CommentDataModel(c));
             this.AddressedTo = feedback.AddressedTo;
-            this.UserName = feedback.User.UserName;
+//            this.UserName = feedback.User.UserName;
         }
 
         public int Id { get; set; }

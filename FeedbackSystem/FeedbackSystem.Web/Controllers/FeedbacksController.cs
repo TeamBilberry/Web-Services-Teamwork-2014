@@ -1,6 +1,7 @@
 ﻿namespace FeedbackSystem.Web.Controllers
 {
     using System;
+    using Microsoft.AspNet.Identity;
     using System.Linq;
     using System.Web.Http;
 
@@ -9,8 +10,7 @@
     using DataModels;
     using FeedbackSystem.Models;
     using FeedbackSystem.Models.Enums;
-    using Microsoft.AspNet.Identity;
-
+    
     [Authorize]
     public class FeedbacksController : BaseApiController
     {
@@ -95,6 +95,7 @@
         public IHttpActionResult Create(FeedbackDataModel model)
         {
             model.UserId = User.Identity.GetUserId();
+            model.UserName = User.Identity.GetUserName();
 
             var feedback = new Feedback
             {
@@ -109,8 +110,36 @@
             this.Data.Feedbacks.Add(feedback);
             this.Data.SaveChanges();
 
-            var addedModel = new FeedbackDataModel(feedback);
-            return Ok(addedModel);
+            model.Id = feedback.Id;
+            
+            return Ok(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("api/Feedbacks/Anonymous")]
+        public IHttpActionResult CreateAnonymous(string userId, FeedbackDataModel model)
+        {
+
+            model.UserId = userId;
+
+            var feedback = new Feedback
+            {
+                AddressedTo = model.AddressedTo,
+                Comments = model.Comments.AsQueryable().Select(CommentDataModel.FromModelToData).ToList(),
+                PostDate = model.PostDate,
+                Text = model.Text,
+                UserId = User.Identity.GetUserId(),
+                Type = model.Type
+            };
+
+            this.Data.Feedbacks.Add(feedback);
+            this.Data.SaveChanges();
+
+            //model.UserName = feedback.User.UserName;
+            model.Id = feedback.Id;
+
+            return Ok(model);
         }
 
         [HttpPut]

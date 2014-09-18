@@ -17,7 +17,8 @@
                     PostDate = c.PostDate,
                     Text = c.Text,
                     UserId = c.UserId,
-                    FeedbackId = c.FeedbackId
+                    FeedbackId = c.FeedbackId,
+                    UserName = c.User.UserName
                 };
             }
         }
@@ -31,7 +32,7 @@
                     Id = c.Id,
                     PostDate = c.PostDate,
                     Text = c.Text,
-                    UserId = c.UserId
+                    UserId = c.UserId,
                 };
             }
         }
@@ -47,6 +48,7 @@
             this.PostDate = comment.PostDate;
             this.Text = comment.Text;
             this.UserId = comment.UserId;
+//            this.UserName = comment.User.UserName;
             this.FeedbackId = comment.FeedbackId;
         }
 
@@ -62,6 +64,8 @@
 
         [Required]
         public string UserId { get; set; }
+
+        public string UserName { get; set; }
 		
 		[Required]
 		public int FeedbackId { get; set; }
