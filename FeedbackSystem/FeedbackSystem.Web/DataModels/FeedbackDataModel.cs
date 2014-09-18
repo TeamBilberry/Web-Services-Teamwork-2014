@@ -21,7 +21,8 @@
                     PostDate = feedback.PostDate,
                     Text = feedback.Text,
                     UserId = feedback.UserId,
-                    Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel)
+                    Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel),
+                    AddressedTo = feedback.AddressedTo
                 };
             }
         }   
@@ -40,6 +41,7 @@
             this.Text = feedback.Text;
             this.UserId = feedback.UserId;
             this.Comments = feedback.Comments.AsQueryable().Select(c => new CommentDataModel(c));
+            this.AddressedTo = feedback.AddressedTo;
         }
 
         public int Id { get; set; }

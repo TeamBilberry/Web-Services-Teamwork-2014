@@ -1,7 +1,6 @@
 ﻿namespace FeedbackSystem.Web.Controllers
 {
     using System;
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Http;
 
@@ -39,6 +38,22 @@
             var feedbacks = this.Data.Feedbacks.All()
                                             .Where(f=>f.UserId == userId)
                                             .Select(FeedbackDataModel.FromDataToModel);
+
+            return Ok(feedbacks);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("api/Feedbacks/Public")]
+        public IHttpActionResult AllPublic()
+        {
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var feedbacks = this.Data.Feedbacks.All().Select(FeedbackDataModel.FromDataToModel).ToArray();
 
             return Ok(feedbacks);
         }
