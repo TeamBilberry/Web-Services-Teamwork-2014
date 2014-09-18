@@ -1,6 +1,4 @@
-﻿
-
-namespace FeedbackSystem.Web.Controllers
+﻿namespace FeedbackSystem.Web.Controllers
 {
     using System;
     using System.Collections.Generic;

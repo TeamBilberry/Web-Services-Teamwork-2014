@@ -13,11 +13,6 @@
     
     public class CommentsController : BaseApiController
     {
-        public CommentsController()
-            : this(new FeedbackSystemData())
-        {
-        }
-
         public CommentsController(IFeedbackSystemData data)
             : base(data)
         {

@@ -14,11 +14,6 @@
     [Authorize]
     public class FeedbacksController : BaseApiController
     {
-        public FeedbacksController()
-            : this(new FeedbackSystemData())
-        {
-        }
-
         public FeedbacksController(IFeedbackSystemData data)
             : base(data)
         {

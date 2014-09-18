@@ -11,11 +11,6 @@
     [Authorize]
     public class UrgentProblemsController : BaseApiController
     {
-        public UrgentProblemsController()
-            : this(new FeedbackSystemData())
-        {   
-        }
-
         public UrgentProblemsController(IFeedbackSystemData data)
             : base(data)
         {
@@ -130,8 +125,6 @@
             }
 
             var model = new UrgentProblemDataModel(problem);
-
-//            model.UserName = problem.User.UserName;
 
             this.Data.UrgentProblems.Delete(problem);
             this.Data.SaveChanges();
