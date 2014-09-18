@@ -21,6 +21,7 @@
                     Status = problem.Status,
                     Text = problem.Text,
                     UserId = problem.UserId,
+                    UserName = problem.User.UserName
                 };
             }
         }
@@ -57,5 +58,7 @@
 
         [Required]
         public string UserId { get; set; }
+
+        public string UserName { get; set; }
     }
 }
