@@ -15,15 +15,13 @@
     public class FeedbacksController : BaseApiController
     {
         public FeedbacksController()
-           : this (new FeedbackSystemData())
+           : this (new FeedbackSystemData(new FeedbackSystemDbContext()))
         {
-            
         }
 
-        public FeedbacksController(IFeedbackSystemData data)
+        public FeedbacksController(FeedbackSystemData data)
             : base(data)
         {
-
         }
 
         [HttpGet]

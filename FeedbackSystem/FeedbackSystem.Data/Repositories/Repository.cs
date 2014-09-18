@@ -1,22 +1,21 @@
 ﻿namespace FeedbackSystem.Data.Repositories
 {
-    using System;
     using System.Data.Entity;
     using System.Linq;
-    using System.Linq.Expressions;
     using Contracts;
 
-    public class EfRepository<T> : IRepository<T> where T : class
+    public class Repository<T> : IRepository<T> where T : class
     {
         private FeedbackSystemDbContext context;
         private IDbSet<T> set;
 
-        public EfRepository()
+        public Repository()
             : this(new FeedbackSystemDbContext())
         {
+
         }
 
-        public EfRepository(FeedbackSystemDbContext context)
+        public Repository(FeedbackSystemDbContext context)
         {
             this.context = context;
             this.set = context.Set<T>();
@@ -25,16 +24,6 @@
         public IQueryable<T> All()
         {
             return this.set;
-        }
-
-        public IQueryable<T> Search(Expression<Func<T, bool>> condition)
-        {
-            return this.All().Where(condition);
-        }
-
-        public T Find(int id)
-        {
-            return this.set.Find(id);
         }
 
         public void Add(T entity)
@@ -52,16 +41,6 @@
             this.ChangeEntityState(entity, EntityState.Modified);
         }
 
-        public void Delete(int id)
-        {
-            var entity = this.Find(id);
-
-            if (entity != null)
-            {
-                this.Delete(entity);
-            }
-        }
-
         public T Delete(T entity)
         {
             this.ChangeEntityState(entity, EntityState.Deleted);
@@ -73,9 +52,9 @@
             this.ChangeEntityState(entity, EntityState.Detached);
         }
 
-        public int SaveChanges()
+        public void SaveChanges()
         {
-            return this.context.SaveChanges();
+            this.context.SaveChanges();
         }
 
         private void ChangeEntityState(T entity, EntityState state)

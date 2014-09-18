@@ -2,13 +2,13 @@
 {
     using System;
     using System.Collections.Generic;
-    using System.Data.Entity;
     using Contracts;
     using Models;
+    using Repositories;
 
     public class FeedbackSystemData : IFeedbackSystemData
     {
-        private DbContext context;
+        private IFeedbackSystemDbContext context;
         private IDictionary<Type, object> repositories = new Dictionary<Type, object>();
 
         public FeedbackSystemData()
@@ -16,7 +16,7 @@
         {
         }
 
-        public FeedbackSystemData(DbContext context)
+        public FeedbackSystemData(IFeedbackSystemDbContext context)
         {
             this.context = context;
         }
@@ -41,29 +41,14 @@
             return this.context.SaveChanges();
         }
 
-        public void Dispose()
-        {
-            this.Dispose(true);
-        }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                if (this.context != null)
-                {
-                    this.context.Dispose();
-                }
-            }
-        }
-
         private IRepository<T> GetRepository<T>() where T : class
         {
+
             var typeOfModel = typeof(T);
 
             if (!this.repositories.ContainsKey(typeOfModel))
             {
-                var typeOfRepository = typeof(IRepository<T>);
+                var typeOfRepository = typeof(Repository<T>);
 
                 this.repositories.Add(typeOfModel, Activator.CreateInstance(typeOfRepository, this.context));
             }

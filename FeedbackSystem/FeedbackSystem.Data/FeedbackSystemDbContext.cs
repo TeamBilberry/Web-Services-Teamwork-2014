@@ -6,7 +6,7 @@
     using Migrations;
     using Models;
 
-    public class FeedbackSystemDbContext : IdentityDbContext<User>
+    public class FeedbackSystemDbContext : IdentityDbContext<User>, IFeedbackSystemDbContext
     {
         public FeedbackSystemDbContext()
             : base("FeedbackSystem", throwIfV1Schema: false)

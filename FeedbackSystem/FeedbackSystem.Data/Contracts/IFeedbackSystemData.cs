@@ -3,7 +3,7 @@
     using System;
     using Models;
 
-    public interface IFeedbackSystemData : IDisposable
+    public interface IFeedbackSystemData
     {
         IRepository<Comment> Comments { get; }
 
