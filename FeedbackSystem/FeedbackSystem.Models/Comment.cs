@@ -19,6 +19,11 @@
         public string Text { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
+		
+		[Required]
+		public int FeedbackId { get; set; }
+		
+		public Feedback Feedback { get; set;}
     }
 }

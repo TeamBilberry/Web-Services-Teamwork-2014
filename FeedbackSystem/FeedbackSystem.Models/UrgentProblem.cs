@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Enums;
 
     /// <summary>
     /// Issues which affect the user in a negative way and need to be addressed
@@ -25,6 +26,8 @@
         public string Text { get; set; }
 
         [Required]
-        public int UserId { get; set; }
+        public string UserId { get; set; }
+
+        public User User { get; set; }
     }
 }

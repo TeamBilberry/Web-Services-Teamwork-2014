@@ -1,4 +1,4 @@
-﻿namespace FeedbackSystem.Models
+﻿namespace FeedbackSystem.Models.Enums
 {
     public enum FeedbackType
     {

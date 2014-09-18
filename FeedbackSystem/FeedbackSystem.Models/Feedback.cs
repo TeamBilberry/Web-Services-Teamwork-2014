@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Enums;
 
     /// <summary>
     /// Praises and complaints to the work of the company
@@ -28,8 +29,9 @@
         [MinLength(10)]
         public string Text { get; set; }
 
-        [Required]
-        public User UserId { get; set; }
+        public string UserId { get; set; }
+		
+        public User User { get; set; }
 
         /// <summary>
         /// Specifies whether the feedback is on an employee,

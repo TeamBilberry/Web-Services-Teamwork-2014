@@ -4,6 +4,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
+    using Enums;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -15,9 +16,9 @@
 
         public User()
         {
-            this.Comments = new HashSet<Comment>();
-            this.Feedbacks = new HashSet<Feedback>();
-            this.UrgentProblems = new HashSet<UrgentProblem>();
+            this.comments = new HashSet<Comment>();
+            this.feedbacks = new HashSet<Feedback>();
+            this.urgentProblems = new HashSet<UrgentProblem>();
         }
 
         [Required]
