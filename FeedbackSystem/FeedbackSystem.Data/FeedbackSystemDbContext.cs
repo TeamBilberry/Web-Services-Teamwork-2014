@@ -9,7 +9,7 @@
     public class FeedbackSystemDbContext : IdentityDbContext<User>, IFeedbackSystemDbContext
     {
         public FeedbackSystemDbContext()
-            : base("FeedbackSystem", throwIfV1Schema: false)
+            : base("AppHarbor", throwIfV1Schema: false)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<FeedbackSystemDbContext, Configuration>());
         }
