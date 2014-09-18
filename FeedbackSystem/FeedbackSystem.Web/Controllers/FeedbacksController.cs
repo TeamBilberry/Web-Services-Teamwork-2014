@@ -15,7 +15,7 @@
     public class FeedbacksController : BaseApiController
     {
         public FeedbacksController()
-           : this (new FeedbackSystemData())
+            : this(new FeedbackSystemData())
         {
         }
 
@@ -36,7 +36,7 @@
             var userId = User.Identity.GetUserId();
 
             var feedbacks = this.Data.Feedbacks.All()
-                                            .Where(f=>f.UserId == userId)
+                                            .Where(f => f.UserId == userId)
                                             .Select(FeedbackDataModel.FromDataToModel);
 
             return Ok(feedbacks);
@@ -78,18 +78,17 @@
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IHttpActionResult ById(int id)
         {
-            var feedback = this.Data.Feedbacks.Find(id);
+            var feedback = this.Data.Feedbacks.All().Where(c => c.Id == id).Select(FeedbackDataModel.FromDataToModel);
 
-            if (feedback == null)
+            if (!feedback.Any())
             {
                 return NotFound();
             }
 
-            var model = new FeedbackDataModel(feedback);
-
-            return Ok(model);
+            return Ok(feedback);
         }
 
         [HttpPost]

@@ -22,7 +22,8 @@
                     Text = feedback.Text,
                     UserId = feedback.UserId,
                     Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel),
-                    AddressedTo = feedback.AddressedTo
+                    AddressedTo = feedback.AddressedTo,
+                    UserName = feedback.User.UserName
                 };
             }
         }   
@@ -42,6 +43,7 @@
             this.UserId = feedback.UserId;
             this.Comments = feedback.Comments.AsQueryable().Select(c => new CommentDataModel(c));
             this.AddressedTo = feedback.AddressedTo;
+            this.UserName = feedback.User.UserName;
         }
 
         public int Id { get; set; }
@@ -58,6 +60,8 @@
 
         [Required]
         public string UserId { get; set; }
+
+        public string UserName { get; set; }
 
         public string AddressedTo { get; set; }
 

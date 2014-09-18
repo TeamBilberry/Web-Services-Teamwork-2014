@@ -212,6 +212,7 @@
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\FeedbacksController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\UrgentProblemsController.cs" />
     <Compile Include="DataModels\CommentDataModel.cs" />
     <Compile Include="DataModels\FeedbackDataModel.cs" />
     <Compile Include="DataModels\UrgentProblemDataModel.cs" />
