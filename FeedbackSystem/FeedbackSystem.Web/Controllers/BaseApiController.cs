@@ -1,7 +1,6 @@
 ﻿namespace FeedbackSystem.Web.Controllers
 {
     using System.Web.Http;
-    using Data;
     using Data.Contracts;
 
 //    [Authorize]
@@ -9,7 +8,7 @@
     {
         protected IFeedbackSystemData Data;
 
-        protected BaseApiController(FeedbackSystemData data)
+        protected BaseApiController(IFeedbackSystemData data)
         {
             this.Data = data;
         }

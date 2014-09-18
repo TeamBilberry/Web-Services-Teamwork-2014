@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using System.Linq.Expressions;
     using FeedbackSystem.Models;
     using FeedbackSystem.Models.Enums;
@@ -13,14 +14,14 @@
         {
             get
             {
-                return feedback => new FeedbackDataModel
+                return feedback => new FeedbackDataModel()
                 {
                     Id = feedback.Id,
                     Type = feedback.Type,
                     PostDate = feedback.PostDate,
                     Text = feedback.Text,
                     UserId = feedback.UserId,
-                    //Comments = feedback.Comments.Select(CommentDataModel.FromDataToModel)
+//                    Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel).ToArray()
                 };
             }
         }
@@ -28,7 +29,7 @@
 
         public FeedbackDataModel()
         {
-            
+            this.Comments = new HashSet<CommentDataModel>();
         }
 
         public FeedbackDataModel(Feedback feedback)
@@ -38,7 +39,7 @@
             this.PostDate = feedback.PostDate;
             this.Text = feedback.Text;
             this.UserId = feedback.UserId;
-            //this.Comments = feedback.Comments.Select(CommentDataModel.FromDataToModel);
+            this.Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel).ToArray();
         }
 
         public int Id { get; set; }
@@ -58,6 +59,6 @@
 
         public string AddressedTo { get; set; }
 
-        //public IEnumerable<CommentDataModel> Comments { get; set; }
+        public ICollection<CommentDataModel> Comments { get; set; }
     }
 }
