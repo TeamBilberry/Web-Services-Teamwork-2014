@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\IDbContext.cs" />
     <Compile Include="Contracts\IFeedbackSystemData.cs" />
     <Compile Include="Contracts\IFeedbackSystemDbContext.cs" />
     <Compile Include="Contracts\IRepository.cs" />
@@ -60,7 +59,7 @@
     <Compile Include="FeedbackSystemData.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\EFRepository.cs" />
+    <Compile Include="Repositories\EfRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

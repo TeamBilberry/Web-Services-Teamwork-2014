@@ -6,7 +6,7 @@
     using Migrations;
     using Models;
 
-    public class FeedbackSystemDbContext : IdentityDbContext<User>, IFeedbackSystemDbContext
+    public class FeedbackSystemDbContext : IdentityDbContext<User>
     {
         public FeedbackSystemDbContext()
             : base("FeedbackSystem", throwIfV1Schema: false)
@@ -25,15 +25,6 @@
 
         public IDbSet<UrgentProblem> UrgentProblems { get; set; }
 
-
-        public IDbSet<T> Set<T>() where T : class
-        {
-            return base.Set<T>();
-        }
-
-        public void SaveChanges()
-        {
-            base.SaveChanges();
-        }
+        // public IDbSet<User> Users { get; set; }
     }
 }

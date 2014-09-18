@@ -16,7 +16,7 @@
 
         void Update(T entity);
 
-        void Delete(T entity);
+        T Delete(T entity);
 
         void Delete(int id);
 

@@ -6,59 +6,53 @@
     using System.Linq.Expressions;
     using Contracts;
 
-    public class EFRepository<T> : IRepository<T> where T : class
+    public class EfRepository<T> : IRepository<T> where T : class
     {
-        public EFRepository()
+        private FeedbackSystemDbContext context;
+        private IDbSet<T> set;
+
+        public EfRepository()
             : this(new FeedbackSystemDbContext())
         {
         }
 
-        public EFRepository(IFeedbackSystemDbContext context)
+        public EfRepository(FeedbackSystemDbContext context)
         {
-            if (context == null)
-            {
-                throw new ArgumentException("An instance of DbContext is required to use this repository.", "context");
-            }
-
-            this.Context = context;
-            this.DbSet = this.Context.Set<T>();
+            this.context = context;
+            this.set = context.Set<T>();
         }
 
-        protected IDbSet<T> DbSet { get; set; }
-
-        protected IFeedbackSystemDbContext Context { get; set; }
-
-        public virtual IQueryable<T> All()
+        public IQueryable<T> All()
         {
-            return this.DbSet.AsQueryable();
+            return this.set;
         }
 
-        public virtual IQueryable<T> Search(Expression<Func<T, bool>> condition)
+        public IQueryable<T> Search(Expression<Func<T, bool>> condition)
         {
             return this.All().Where(condition);
         }
 
-        public virtual T Find(int id)
+        public T Find(int id)
         {
-            return this.DbSet.Find(id);
+            return this.set.Find(id);
         }
 
-        public virtual void Add(T entity)
+        public void Add(T entity)
         {
             this.ChangeEntityState(entity, EntityState.Added);
         }
 
-        public virtual void Update(T entity)
+        public T Find(object id)
+        {
+            return this.set.Find(id);
+        }
+
+        public void Update(T entity)
         {
             this.ChangeEntityState(entity, EntityState.Modified);
         }
 
-        public virtual void Delete(T entity)
-        {
-            this.ChangeEntityState(entity, EntityState.Deleted);
-        }
-
-        public virtual void Delete(int id)
+        public void Delete(int id)
         {
             var entity = this.Find(id);
 
@@ -68,20 +62,31 @@
             }
         }
 
-        public virtual void Detach(T entity)
+        public T Delete(T entity)
+        {
+            this.ChangeEntityState(entity, EntityState.Deleted);
+            return entity;
+        }
+
+        public void Detach(T entity)
         {
             this.ChangeEntityState(entity, EntityState.Detached);
         }
 
         public int SaveChanges()
         {
-            return this.Context.SaveChanges();
+            return this.context.SaveChanges();
         }
 
-        private void ChangeEntityState(T entity, EntityState newEntityState)
+        private void ChangeEntityState(T entity, EntityState state)
         {
-            var entry = this.Context.Entry(entity);
-            entry.State = newEntityState;
+            var entry = this.context.Entry(entity);
+            if (entry.State == EntityState.Detached)
+            {
+                this.set.Attach(entity);
+            }
+
+            entry.State = state;
         }
     }
 }

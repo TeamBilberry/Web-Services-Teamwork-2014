@@ -8,8 +8,8 @@
 
     public class FeedbackSystemData : IFeedbackSystemData
     {
-        private readonly DbContext context;
-        private readonly IDictionary<Type, object> repositories = new Dictionary<Type, object>();
+        private DbContext context;
+        private IDictionary<Type, object> repositories = new Dictionary<Type, object>();
 
         public FeedbackSystemData()
             : this(new FeedbackSystemDbContext())
