@@ -74,7 +74,7 @@
 
             var model = new FeedbackDataModel(feedback);
 
-            return Ok(feedback);
+            return Ok(model);
         }
 
         [HttpPost]

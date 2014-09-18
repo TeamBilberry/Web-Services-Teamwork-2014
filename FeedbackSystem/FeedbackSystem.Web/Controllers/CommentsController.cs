@@ -10,6 +10,7 @@
 
 
     [Authorize]
+    
     public class CommentsController : BaseApiController
     {
         public CommentsController()

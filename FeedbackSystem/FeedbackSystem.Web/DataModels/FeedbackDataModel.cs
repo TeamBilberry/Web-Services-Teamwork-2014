@@ -21,7 +21,7 @@
                     PostDate = feedback.PostDate,
                     Text = feedback.Text,
                     UserId = feedback.UserId,
-//                    Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel).ToArray()
+                    Comments = feedback.Comments.AsQueryable().Select(CommentDataModel.FromDataToModel)
                 };
             }
         }
