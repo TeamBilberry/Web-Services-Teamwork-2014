@@ -49,5 +49,22 @@
             return Ok(comments);
         }
 
+        [HttpDelete]
+        public IHttpActionResult DeletComment(int id)
+        {
+            var existingComment = this.Data.Comments
+                                        .All()
+                                        .FirstOrDefault(a => a.Id == id);
+
+            if (existingComment == null)
+            {
+                return BadRequest("Comment does not exists!");
+            }
+
+            this.Data.Comments.Delete(existingComment);
+            this.Data.SaveChanges();
+
+            return Ok(existingComment);
+        }
     }
 }
