@@ -1,5 +1,54 @@
 ﻿@{
     PageData["title"] = "Feedback System";
 }
-<h2>Welcome!</h2>
-<p>This is just a demo page.</p>
+
+<div class="jumbotron">
+    <h1>Welcome to our Feedback System</h1>
+    <p>We are happy to have your feedback. And some other text to presentour application on the index page.</p>
+    <a class="btn btn-success" href="/createFeedback">Give Feedback</a>
+    <a class="btn btn-success" href="/about">Learn more</a>
+</div>
+
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Date</th>
+            <th>Addressed To</th>
+            <th>User</th>
+            <th>Feedback</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="feedback in feedbacks | startFrom: (currentPage * pageSize) | limitTo: pageSize">
+            <td>{{feedback.Id}}</td>
+            <td>{{feedback.Type}}</td>
+            <td>{{feedback.PostDate}}</td>
+            <td>{{feedback.AddressedTo}}</td>
+            <td>{{feedback.UserName}}</td>
+            <td>{{feedback.Text}}</td>
+            <td><a class="btn btn-info" href="/viewFeedback/{{feedback.Id}}">View</a></td>
+        </tr>
+    </tbody>
+</table> 
+
+<ul class="pager">
+    <li>
+        <button class="btn btn-default" ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1">
+            Previous
+        </button>
+    </li>
+    <li>
+        <strong>{{currentPage + 1}} </strong>   /  <strong> {{numberOfPages()}}</strong>
+    </li>
+    <li>
+        <button class="btn btn-default" ng-disabled="currentPage >= data.length / pageSize - 1" ng-click="currentPage = currentPage + 1">
+            Next
+        </button>
+    </li>
+</ul>
+
+
+        

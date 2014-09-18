@@ -251,6 +251,10 @@
     <Content Include="Views\_Layout.cshtml" />
     <Content Include="Views\_PageStart.cshtml" />
     <Content Include="Views\About.cshtml" />
+    <Content Include="Views\Register.cshtml" />
+    <Content Include="Views\CreateFeedback.cshtml" />
+    <Content Include="Views\ViewFeedback.cshtml" />
+    <Content Include="Views\EditFeedback.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,14 +1,7 @@
 ﻿'use strict';
 
-// Declares how the application should be bootstrapped. See: http://docs.angularjs.org/guide/module
 angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directives', 'app.controllers'])
-
-    // Gets executed during the provider registrations and configuration phase. Only providers and constants can be
-    // injected here. This is to prevent accidental instantiation of services before they have been fully configured.
     .config(['$stateProvider', '$locationProvider', function ($stateProvider, $locationProvider) {
-
-        // UI States, URL Routing & Mapping. For more info see: https://github.com/angular-ui/ui-router
-        // ------------------------------------------------------------------------------------------------------------
 
         $stateProvider
             .state('home', {
@@ -22,11 +15,27 @@ angular.module('app', ['ui.router', 'app.filters', 'app.services', 'app.directiv
                 templateUrl: '/views/about',
                 controller: 'AboutCtrl'
             })
+            .state('createFeedback', {
+                url: '/createFeedback',
+                templateUrl: '/views/createFeedback',
+                controller: 'CreateFeedbackCtrl'
+            })
+            .state('viewFeedback', {
+                url: '/viewFeedback/:id',
+                templateUrl: '/views/viewFeedback',
+                controller: 'ViewFeedbackCtrl'
+            })
             .state('login', {
                 url: '/login',
                 layout: 'basic',
                 templateUrl: '/views/login',
                 controller: 'LoginCtrl'
+            })
+            .state('register', {
+                url: '/register',
+                layout: 'basic',
+                templateUrl: '/views/register',
+                controller: 'RegisterCtrl'
             })
             .state('otherwise', {
                 url: '*path',

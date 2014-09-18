@@ -1,0 +1,27 @@
+﻿@{
+    PageData["title"] = "Feedback System";
+}
+
+<form class="col-sm-12" ng-submit="create(type, addressTo, text)">
+    <h1 class="text-center">{{title}}</h1>
+    <div class="form-group">
+        <label>Feedback type:</label><br />
+        <select ng-model="type">
+            <option value="">-- Choose feedback type --</option>
+            <option value="0">Praise</option>
+            <option value="1">Complaint</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Address to:</label>
+        <input ng-model="addressTo" type="text" class="form-control" placeholder="Address feedback to..." required autofocus />
+    </div>
+    <div class="form-group">
+        <label>Feedback:</label>
+        <textarea ng-model="text" class="form-control" placeholder="Enter your feedback..." required></textarea>
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-block" type="submit" ng-disabled="!(addressTo && text)" disabled>Give</button>
+    </div>
+</form>
+
