@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FeedbackSystem.Models
+﻿namespace FeedbackSystem.Models
 {
-    class UploadedImages
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+
+    public class UploadedImages
     {
+        public int ID { get; set; }
+
+        [Required]
+        public string Name { get; set; }
     }
 }

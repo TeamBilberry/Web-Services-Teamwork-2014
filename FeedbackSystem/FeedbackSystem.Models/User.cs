@@ -13,12 +13,14 @@
         private ICollection<Feedback> feedbacks;
         private ICollection<Comment> comments;
         private ICollection<UrgentProblem> urgentProblems;
+        private ICollection<UploadedImages> uploadedImages;
 
         public User()
         {
             this.comments = new HashSet<Comment>();
             this.feedbacks = new HashSet<Feedback>();
             this.urgentProblems = new HashSet<UrgentProblem>();
+            this.uploadedImages = new HashSet<UploadedImages>();
         }
 
         [Required]
@@ -39,6 +41,12 @@
         {
             get { return this.urgentProblems; }
             set { this.urgentProblems = value; }
+        }
+
+        public virtual ICollection<UploadedImages> UploadedImages
+        {
+            get { return this.uploadedImages; }
+            set { this.uploadedImages = value; }
         }
 
         // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.

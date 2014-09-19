@@ -59,6 +59,7 @@
     <Compile Include="Enums\FeedbackType.cs" />
     <Compile Include="Enums\ProblemStatusType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UploadedImages.cs" />
     <Compile Include="UrgentProblem.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Enums\UserStatusType.cs" />
